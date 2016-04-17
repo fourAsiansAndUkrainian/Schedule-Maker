@@ -9,7 +9,7 @@
    "default_popup": "popup.html"
   },
   "permissions": [
-   "activeTab","clipboardRead","storage"
+   "activeTab"
    ],
 
   "content_scripts" : [
