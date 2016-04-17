@@ -17,6 +17,6 @@
   },
   "content_scripts": [{
    "matches": ["file:///*"],
-   "js":["content.js"]
+   "js":["content.js", "jquery-1.12.3.js"]
   }]
 }
