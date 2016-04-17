@@ -2,48 +2,75 @@
 
 using namespace std;
 
-inline DWORD Section::convertToMinutes(Time& t)
+inline DWORD Section::convertToMinutes(int wkdy, Time& t)
 {
 	DWORD hour = t.hour;
 	if (t.AMPMIndicator == PM && t.hour != 12) {
 		hour += 12;
 	}
-	return (hour - EARLIEST_HOUR) * 60 + t.minute;
+	return (hour - EARLIEST_HOUR) * 60 + t.minute + wkdy;
 }
 
 
-TimeRange Section::getTimeRange()
+vector<MinuteTimeRange> Section::getMinuteTimeRange()
 {
-	TimeRange timeRange = { convertToMinutes(startTime), convertToMinutes(endTime) };
-	return timeRange;
+	vector<MinuteTimeRange> vmtr;
+	for (int i = 0; i < weekdays.size(); i++) {
+		for (int j = 0; j < weekdays[i].timePeriods.size(); j++) {
+			MinuteTimeRange minTimeRange = { 
+				convertToMinutes(weekdays[i].weekDay, weekdays[i].timePeriods[j].startTime),
+				convertToMinutes(weekdays[i].weekDay, weekdays[i].timePeriods[j].endTime) };
+			vmtr.push_back(minTimeRange);
+		}
+	}
+	
+	return vmtr;
 }
 
 
 string Section::getTime()
 {
-	string hourString = to_string(startTime.hour);
-	if (hourString.length() == 1) {
-		hourString.insert(0, "0");
-	}
-	string minString = to_string(startTime.minute);
-	if (minString.length() == 1) {
-		minString.insert(0, "0");
-	}
-	string startTimeString = hourString + ":" + minString;
-	startTimeString += startTime.AMPMIndicator == AM ? " AM" : " PM";
+	string resultString = "";
+	
+	for (auto weekday : weekdays) {
 
-	hourString = to_string(endTime.hour);
-	if (hourString.length() == 1) {
-		hourString.insert(0, "0");
-	}
-	minString = to_string(startTime.minute);
-	if (minString.length() == 1) {
-		minString.insert(0, "0");
-	}
-	string endTimeString = hourString + ":" + minString;
-	endTimeString += endTime.AMPMIndicator == AM ? " AM" : " PM";
+		switch (weekday.weekDay)
+		{
+		case M: resultString += "M"; break;
+		case T: resultString += "T"; break;
+		case W: resultString += "W"; break;
+		case R: resultString += "R"; break;
+		case F: resultString += "F"; break;
+		}
+		for (auto time : weekday.timePeriods) {
+			string hourString = to_string(time.startTime.hour);
+			if (hourString.length() == 1) {
+				hourString.insert(0, "0");
+			}
+			string minString = to_string(time.startTime.minute);
+			if (minString.length() == 1) {
+				minString.insert(0, "0");
+			}
+			string startTimeString = hourString + ":" + minString;
+			startTimeString += time.startTime.AMPMIndicator == AM ? " AM" : " PM";
 
-	return startTimeString + " - " + endTimeString;
+			hourString = to_string(time.endTime.hour);
+			if (hourString.length() == 1) {
+				hourString.insert(0, "0");
+			}
+			minString = to_string(time.endTime.minute);
+			if (minString.length() == 1) {
+				minString.insert(0, "0");
+			}
+			string endTimeString = hourString + ":" + minString;
+			endTimeString += time.endTime.AMPMIndicator == AM ? " AM" : " PM";
+
+			resultString += "\t" + startTimeString + " - " + endTimeString + "\n\t\t\t";
+		}
+		resultString += "\n";
+	}
+
+	return resultString;
 }
 
 
@@ -60,7 +87,7 @@ Schedule::Schedule(const Schedule& sch)
 	memcpy(this->hashTable, sch.hashTable, TOTAL_SIZE);
 }
 
-bool Schedule::CheckAdd(TimeRange tr)
+bool Schedule::CheckAdd(MinuteTimeRange tr)
 {
 	if (hashTable[tr.startTime] || hashTable[tr.endTime]) {
 		return false;
@@ -74,12 +101,16 @@ bool Schedule::CheckAdd(TimeRange tr)
 
 void Schedule::CheckAdd(Section sect)
 {
-	TimeRange tr = sect.getTimeRange();
-	if (hashTable[tr.startTime] || hashTable[tr.endTime])
-		return;
-
-	for (int i = tr.startTime; i <= tr.endTime; ++i) {
-		hashTable[i] = true;
+	vector<MinuteTimeRange> vmtr = sect.getMinuteTimeRange();
+	for (auto minTimeRange : vmtr) {
+		if (hashTable[minTimeRange.startTime] || hashTable[minTimeRange.endTime])
+			return;
+	}
+	
+	for (auto minTimeRange : vmtr) {
+		for (int i = minTimeRange.startTime; i <= minTimeRange.endTime; ++i) {
+			hashTable[i] = true;
+		}
 	}
 	sections.push_back(sect);
 }

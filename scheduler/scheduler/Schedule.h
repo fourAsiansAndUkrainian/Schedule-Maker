@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 
-#define TOTAL_SIZE 780	// 780 minutes
+#define TOTAL_SIZE 3900	// 3900 minutes for every week
 #define NO_CONFLICT 1
 #define CONFLICT 0
 
@@ -10,6 +10,12 @@
 #define PM 1
 #define EARLIEST_HOUR 8		// earliest class hour of a day
 
+// weeday encodings
+#define M 0
+#define T 780
+#define W 1560
+#define R 2340
+#define F 3120
 
 struct Time {
 	DWORD hour;
@@ -18,6 +24,19 @@ struct Time {
 };
 
 struct TimeRange {
+	Time startTime;
+	Time endTime;
+};
+
+struct WeekDay {
+	int weekDay;		// indicates which weekday it is
+	std::vector<TimeRange> timePeriods;
+
+	//WeekDay(int wd, vector<TimeRange> tr): WeekDay(wd), timePeriods()
+};
+
+
+struct MinuteTimeRange {
 	DWORD startTime;
 	DWORD endTime;
 };
@@ -25,15 +44,14 @@ struct TimeRange {
 struct Section {		// course with section number
 	std::string courseName;
 	std::string sectionName;
-	Time startTime;
-	Time endTime;
+	std::vector<WeekDay> weekdays;
 
-	Section::Section(std::string sn, Time st, Time et) :
-		sectionName(sn), startTime(st), endTime(et) { }
+	Section::Section(std::string sn, std::vector<WeekDay> wkd) :
+		sectionName(sn), weekdays(wkd) { }
 
-	inline DWORD convertToMinutes(Time& t);
+	inline DWORD convertToMinutes(int wkdy, Time& t);
 
-	TimeRange getTimeRange();
+	std::vector<MinuteTimeRange> getMinuteTimeRange();
 	std::string getTime();
 };
 
@@ -59,7 +77,7 @@ public:
 	Schedule(const Schedule& sch);
 	Schedule operator=(const Schedule& sch);
 	~Schedule() { delete[] hashTable; }
-	bool CheckAdd(TimeRange tr);		// returns true if succeeds
+	bool CheckAdd(MinuteTimeRange tr);		// returns true if succeeds
 	void CheckAdd(Section sect);
 	inline int Check(Section& sect);
 	void printSchedule();
@@ -67,8 +85,11 @@ public:
 
 inline int Schedule::Check(Section& sect)
 {
-	TimeRange tr = sect.getTimeRange();
-	if (hashTable[tr.startTime] || hashTable[tr.endTime])
-		return CONFLICT;
+	std::vector<MinuteTimeRange> vmtr = sect.getMinuteTimeRange();
+	for (auto minTimeRange : vmtr) {
+		if (hashTable[minTimeRange.startTime] || hashTable[minTimeRange.endTime])
+			return CONFLICT;
+	}
+	
 	return NO_CONFLICT;
 }

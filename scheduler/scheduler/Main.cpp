@@ -51,13 +51,25 @@ void timeMatchingTest()
 	// CSCE 313
 	Time start = { 11, 10, AM };
 	Time end = { 12, 25, PM };
+	TimeRange tr = { start, end };
+	vector<TimeRange> vtr = { tr };
+	WeekDay wd1 = { M, vtr };
+	WeekDay wd2 = { W, vtr };
+	WeekDay wd3 = { F, vtr };
+	vector<WeekDay> wkdys = { wd1, wd2, wd3 };
 
-	Section s1("501", start, end);
+	Section s1("501", wkdys);
 
 	start = { 12, 45, PM };
 	end = { 1, 30, PM };
+	tr = { start, end };
+	vtr = { tr };
+	wd1 = { M, vtr };
+	wd2 = { W, vtr };
+	wd3 = { F, vtr };
+	wkdys = { wd1, wd2, wd3 };
 
-	Section s2("502", start, end);
+	Section s2("502", wkdys);
 
 	vector<Section> s = { s1, s2 };
 	Course c1("CSCE 313", s);
@@ -65,12 +77,24 @@ void timeMatchingTest()
 	// ECEN 214
 	start = { 3, 00, PM };
 	end = { 3, 50, PM };
-	Section s3("200", start, end);
+	tr = { start, end };
+	vtr = { tr };
+	wd1 = { M, vtr };
+	wd2 = { W, vtr };
+	wd3 = { F, vtr };
+	wkdys = { wd1, wd2, wd3 };
+	Section s3("200", wkdys);
 
 	
-	start = { 9, 10, AM };
-	end = { 10, 0, AM };
-	Section s4("501", start, end);
+	start = { 10, 50, AM };
+	end = { 11, 10, AM };
+	tr = { start, end };
+	vtr = { tr };
+	wd1 = { M, vtr };
+	wd2 = { W, vtr };
+	wd3 = { F, vtr };
+	wkdys = { wd1, wd2, wd3 };
+	Section s4("501", wkdys);
 
 	vector<Section> ss = { s3, s4 };
 	Course c2("ECEN 214", ss);
@@ -78,16 +102,28 @@ void timeMatchingTest()
 	// MATH 311
 	start = {8, 0, AM};
 	end = { 8, 50, AM };
-	Section s5("501", start, end);
+	tr = { start, end };
+	vtr = { tr };
+	wd1 = { M, vtr };
+	wd2 = { W, vtr };
+	wd3 = { F, vtr };
+	wkdys = { wd1, wd2, wd3 };
+	Section s5("501", wkdys);
 
 	start = { 5, 0, PM };
 	end = { 5, 50, PM };
-	Section s6("502", start, end);
+	tr = { start, end };
+	vtr = { tr };
+	wd1 = { M, vtr };
+	wd2 = { W, vtr };
+	wd3 = { F, vtr };
+	wkdys = { wd1, wd2, wd3 };
+	Section s6("502", wkdys);
 
 	vector<Section> sss = { s5, s6 };
 	Course c3("MATH 311", sss);
 
-	vector<Course> courses = { c1, c2, c3};
+	vector<Course> courses = { c1, c2, c3 };
 
 	queue<Schedule> schedules;
 	for (int i = 0; i < courses[0].sections.size(); i++) {
