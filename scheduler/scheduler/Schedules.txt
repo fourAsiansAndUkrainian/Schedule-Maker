@@ -1,0 +1,41 @@
+
+Search  
+ Go
+ Print
+Look up Classes
+
+ 	
+T01268611 Yuan Yao
+Fall 2016 - College Station
+Apr 16, 2016 10:59 am
+Transparent Image
+ INSTRUCTIONS
+Class Restrictions: To view class restrictions, click on the Restrictions links.
+Course Catalog Entry: To view the course catalog entry for a course, please click on the subject.
+Sections Found
+CSCE - Computer Sci & Engr
+Select	CRN	Subj	Crse	Sec	Cmp	Cred	Title	Days	Time	Cap	Act	Rem	Instructor 
+Click name to see CV	Date (MM/DD)	Location	Attribute
+C	26730	CSCE	313	201	CS	4	HNR-INTRO TO COMPUTER SYSTEM 
+(Restrictions/Details)	M	04:00 pm-06:00 pm	0	0	0	TBA	08/29-12/14	RDMC 111J	Honors
+ 	 	 	 	 	 	 	 	TR	11:10 am-12:25 pm	 	 	 	TBA	08/29-12/14	HRBB 124	 
+C	10939	CSCE	313	501	CS	4	INTRO TO COMPUTER SYSTEM 
+(Restrictions/Details)	TR	11:10 am-12:25 pm	30	30	0	TBA	08/29-12/14	HRBB 124	 
+ 	 	 	 	 	 	 	 	T	01:55 pm-03:35 pm	 	 	 	TBA	08/29-12/14	RDMC 111C	 
+C	10940	CSCE	313	502	CS	4	INTRO TO COMPUTER SYSTEM 
+(Restrictions/Details)	TR	11:10 am-12:25 pm	30	30	0	TBA	08/29-12/14	HRBB 124	 
+ 	 	 	 	 	 	 	 	R	01:55 pm-03:35 pm	 	 	 	TBA	08/29-12/14	RDMC 111C	 
+C	14941	CSCE	313	503	CS	4	INTRO TO COMPUTER SYSTEM 
+(Restrictions/Details)	TR	11:10 am-12:25 pm	30	30	0	TBA	08/29-12/14	HRBB 124	 
+ 	 	 	 	 	 	 	 	F	03:00 pm-04:40 pm	 	 	 	TBA	08/29-12/14	RDMC 111C	 
+	14942	CSCE	313	504	CS	4	INTRO TO COMPUTER SYSTEM 
+(Restrictions/Details)	TR	09:35 am-10:50 am	28	12	16	TBA	08/29-12/14	HRBB 113	 
+ 	 	 	 	 	 	 	 	T	11:10 am-12:50 pm	 	 	 	TBA	08/29-12/14	RDMC 111C	 
+	24217	CSCE	313	505	CS	4	INTRO TO COMPUTER SYSTEM 
+(Restrictions/Details)	TR	09:35 am-10:50 am	25	7	18	TBA	08/29-12/14	HRBB 113	 
+ 	 	 	 	 	 	 	 	R	11:10 am-12:50 pm	 	 	 	TBA	08/29-12/14	RDMC 111C	 
+
+Register Add to WorkSheet New Search
+Print
+Transparent Image
+6

@@ -1,0 +1,18 @@
+﻿Build started 4/16/2016 8:15:20 PM.
+     1>Project "D:\Hackathon\scheduler\scheduler\scheduler.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         G:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Schedule.cpp
+         Schedule.cpp
+     1>d:\hackathon\scheduler\scheduler\schedule.h(46): warning C4018: '<': signed/unsigned mismatch
+     1>d:\hackathon\scheduler\scheduler\schedule.cpp(69): warning C4018: '<=': signed/unsigned mismatch
+     1>d:\hackathon\scheduler\scheduler\schedule.cpp(81): warning C4018: '<=': signed/unsigned mismatch
+     1>d:\hackathon\scheduler\scheduler\schedule.cpp(96): warning C4018: '<': signed/unsigned mismatch
+       Link:
+         G:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Hackathon\scheduler\Debug\scheduler.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\Hackathon\scheduler\Debug\scheduler.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Hackathon\scheduler\Debug\scheduler.lib" /MACHINE:X86 Debug\Main.obj
+         Debug\Schedule.obj
+         scheduler.vcxproj -> D:\Hackathon\scheduler\Debug\scheduler.exe
+     1>Done Building Project "D:\Hackathon\scheduler\scheduler\scheduler.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.02
