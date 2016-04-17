@@ -1,5 +1,5 @@
 var loadButt = document.getElementById('load');
-var count = 1;
+var count = 0;
 var courses =[];
 if(loadButt)
 {
@@ -12,10 +12,8 @@ if(loadButt)
 		{
 			var win = window.open('tables.html','MyTables');
 		}
-
-		localStorage.setItem("Courses","courses" + count);
+		localStorage.setItem("courses",getContentFromClipboard());
 		count += 1;
-		console.log("hi");
 
 	/*var slot = document.getElementById('myTable');	
 	var header = slot.createTHead();
@@ -28,6 +26,21 @@ if(loadButt)
 	});
 
 }
+function getContentFromClipboard()
+{
+	var result = '';
+	var sandbox = document.getElementById('sandbox');
+	sandbox.value = '';
+	sandbox.select();
+	if(document.execCommand('paste'))
+	{
+		result = sandbox.value;
+		//console.log("result:"+result);
+	}
+	sandbox.value = '';
+	return result;
+}
+
 
 
 
